@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Explore dummy U.S. university matches in the Future Path discovery experience."
+    >
+    <title>Universities | Future Path</title>
+
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://unpkg.com">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9Oer+R0CEaRZ9SAzqREqN7E1MxLvmPpT2cyVnf0O8sDG"
+      crossorigin="anonymous"
+    >
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="page-noise" aria-hidden="true"></div>
+    <div class="cursor-glow" aria-hidden="true"></div>
+
+    <nav class="navbar navbar-expand-lg fixed-top fp-navbar" aria-label="Primary navigation">
+      <div class="container">
+        <a class="navbar-brand brand-mark" href="index.html#home" aria-label="Future Path home">
+          <img
+            class="brand-logo"
+            src="https://myfuturepath.us/web/image/website/1/logo/My%20Website?unique=0751440"
+            alt="Future Path"
+          >
+        </a>
+
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mainNavbar"
+          aria-controls="mainNavbar"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="hamburger-lines">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNavbar">
+          <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+            <li class="nav-item"><a class="nav-link" href="index.html#home">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html#partners">Partners</a></li>
+            <li class="nav-item"><a class="nav-link" href="resources.html">Resources</a></li>
+            <li class="nav-item"><a class="nav-link active" href="#universities">Universities</a></li>
+            <li class="nav-item"><a class="nav-link" href="https://myfuturepath.us/web/login">Colleges</a></li>
+          </ul>
+          <div class="nav-actions ms-lg-4">
+            <a class="btn btn-primary-gradient" href="https://myfuturepath.us/web/login">Login</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main id="universities">
+      <section class="universities-hero section-shell overflow-hidden">
+        <div class="hero-bg" aria-hidden="true">
+          <span class="hero-orb hero-orb-one"></span>
+          <span class="hero-orb hero-orb-two"></span>
+          <span class="hero-orb hero-orb-three"></span>
+          <span class="particle-field"></span>
+        </div>
+
+        <div class="container position-relative">
+          <div class="universities-first-view">
+            <div class="hero-copy universities-copy" data-aos="fade-up">
+              <span class="eyebrow">
+                <i class="bi bi-bank"></i>
+                University discovery
+              </span>
+              <h1 class="display-heading">
+                Explore universities
+                <span>built around fit.</span>
+              </h1>
+              <p class="hero-subtitle">
+                Search sample university profiles, filter by program, tuition rate, scholarship potential, and match score, then scroll the cards without leaving the page.
+              </p>
+            </div>
+
+            <div id="university-results" class="university-finder glass-panel" data-aos="fade-up" data-aos-delay="120">
+              <div class="finder-toolbar">
+                <div class="search-shell">
+                  <i class="bi bi-search"></i>
+                  <input type="search" aria-label="Search universities" placeholder="Search universities, programs, scholarships...">
+                </div>
+                <button class="filter-chip active" data-rate-filter="all">All</button>
+                <button class="filter-chip" data-rate-filter="up-to-15000">Up to $15000</button>
+                <button class="filter-chip" data-rate-filter="15000-30000">$15000 - $30000</button>
+                <button class="filter-chip" data-rate-filter="over-30000">Over $30000</button>
+              </div>
+
+              <div class="finder-layout">
+                <div class="university-scroll-list" aria-label="University results">
+                  <article class="finder-university-card" data-name="Pacific Crest University California computer science data design" data-price="28000">
+                    <span class="college-badge">CA</span>
+                    <h3>Pacific Crest University</h3>
+                    <strong>$28,000</strong>
+                  </article>
+
+                  <article class="finder-university-card" data-name="Hudson Valley University New York business analytics finance communication" data-price="31000">
+                    <span class="college-badge">NY</span>
+                    <h3>Hudson Valley University</h3>
+                    <strong>$31,000</strong>
+                  </article>
+
+                  <article class="finder-university-card" data-name="Lone Star Global University Texas engineering health sciences aviation" data-price="24000">
+                    <span class="college-badge">TX</span>
+                    <h3>Lone Star Global University</h3>
+                    <strong>$24,000</strong>
+                  </article>
+
+                  <article class="finder-university-card" data-name="Great Lakes Institute Michigan robotics biology stem" data-price="19000">
+                    <span class="college-badge">MI</span>
+                    <h3>Great Lakes Institute</h3>
+                    <strong>$19,000</strong>
+                  </article>
+
+                  <article class="finder-university-card" data-name="Suncoast International University Florida hospitality marine science business" data-price="23000">
+                    <span class="college-badge">FL</span>
+                    <h3>Suncoast International University</h3>
+                    <strong>$23,000</strong>
+                  </article>
+
+                  <article class="finder-university-card" data-name="Northwest Innovation University Washington engineering computer science entrepreneurship" data-price="36000">
+                    <span class="college-badge">WA</span>
+                    <h3>Northwest Innovation University</h3>
+                    <strong>$36,000</strong>
+                  </article>
+
+                  <article class="finder-university-card" data-name="Blue Ridge Arts College North Carolina arts media design" data-price="14500">
+                    <span class="college-badge">NC</span>
+                    <h3>Blue Ridge Arts College</h3>
+                    <strong>$14,500</strong>
+                  </article>
+
+                  <article class="finder-university-card" data-name="Metro Tech University Illinois technology business cybersecurity" data-price="29800">
+                    <span class="college-badge">IL</span>
+                    <h3>Metro Tech University</h3>
+                    <strong>$29,800</strong>
+                  </article>
+
+                  <article class="finder-university-card" data-name="Desert Valley University Arizona biology pre med environmental science" data-price="12500">
+                    <span class="college-badge">AZ</span>
+                    <h3>Desert Valley University</h3>
+                    <strong>$12,500</strong>
+                  </article>
+
+                  <article class="finder-university-card" data-name="Atlantic Harbor University Massachusetts business economics international relations" data-price="42000">
+                    <span class="college-badge">MA</span>
+                    <h3>Atlantic Harbor University</h3>
+                    <strong>$42,000</strong>
+                  </article>
+
+                  <article class="finder-university-card" data-name="Prairie State College Kansas agriculture engineering education" data-price="15400">
+                    <span class="college-badge">KS</span>
+                    <h3>Prairie State College</h3>
+                    <strong>$15,400</strong>
+                  </article>
+
+                  <article class="finder-university-card" data-name="Golden Gate Business School California business marketing entrepreneurship" data-price="33200">
+                    <span class="college-badge">CA</span>
+                    <h3>Golden Gate Business School</h3>
+                    <strong>$33,200</strong>
+                  </article>
+
+                  <p class="finder-empty-message" hidden>No universities match your search.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="university-stats section-padding">
+        <div class="container">
+          <div class="row g-4">
+            <div class="col-md-6 col-xl-3" data-aos="fade-up">
+              <div class="trust-card tilt-card">
+                <i class="bi bi-search-heart"></i>
+                <strong><span class="counter" data-target="6200">0</span>+</strong>
+                <span>U.S. colleges and universities to explore</span>
+              </div>
+            </div>
+            <div class="col-md-6 col-xl-3" data-aos="fade-up" data-aos-delay="80">
+              <div class="trust-card tilt-card">
+                <i class="bi bi-cash-coin"></i>
+                <strong>$18K</strong>
+                <span>Average dummy scholarship opportunity shown</span>
+              </div>
+            </div>
+            <div class="col-md-6 col-xl-3" data-aos="fade-up" data-aos-delay="160">
+              <div class="trust-card tilt-card">
+                <i class="bi bi-globe-americas"></i>
+                <strong>4</strong>
+                <span>Regions highlighted for quick browsing</span>
+              </div>
+            </div>
+            <div class="col-md-6 col-xl-3" data-aos="fade-up" data-aos-delay="240">
+              <div class="trust-card tilt-card">
+                <i class="bi bi-chat-dots"></i>
+                <strong>Direct</strong>
+                <span>Admissions contact paths in each profile</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="university-fit" class="university-fit-section section-padding">
+        <div class="container">
+          <div class="university-fit-panel glass-panel" data-aos="fade-up">
+            <div>
+              <span class="eyebrow">Compare before you apply</span>
+              <h2 class="section-title">Make every shortlist choice easier to explain.</h2>
+              <p class="section-lead">
+                Future Path can turn university research into a clear family conversation: cost, academics, location, student life, and next steps in one place.
+              </p>
+              <div class="check-list">
+                <span><i class="bi bi-check2-circle"></i> Compare tuition, scholarships, and housing support</span>
+                <span><i class="bi bi-check2-circle"></i> Save best-fit universities for students and parents</span>
+                <span><i class="bi bi-check2-circle"></i> Connect directly with admissions teams when ready</span>
+              </div>
+            </div>
+
+            <div class="fit-score-card">
+              <div class="fit-score-ring">94%</div>
+              <h3>Example fit score</h3>
+              <p>Weighted from program strength, budget range, region preference, campus support, and scholarship availability.</p>
+              <div class="fit-bars">
+                <span><strong>Program fit</strong><em style="width: 94%"></em></span>
+                <span><strong>Budget fit</strong><em style="width: 82%"></em></span>
+                <span><strong>Student support</strong><em style="width: 91%"></em></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <a class="brand-mark" href="index.html#home">
+              <img
+                class="brand-logo footer-logo"
+                src="https://myfuturepath.us/web/image/website/1/logo/My%20Website?unique=0751440"
+                alt="Future Path"
+              >
+            </a>
+            <p>
+              Giving every high school student in the world the opportunity to access the best education possible.
+            </p>
+          </div>
+          <div class="footer-links">
+            <div>
+              <h3>Explore</h3>
+              <a href="index.html#home">Home</a>
+              <a href="index.html#partners">Partners</a>
+              <a href="resources.html">Resources</a>
+              <a href="#universities">Universities</a>
+              <a href="https://myfuturepath.us/web/login">Colleges</a>
+            </div>
+            <div>
+              <h3>Company</h3>
+              <a href="index.html#partners">Mission</a>
+              <a href="index.html#how-it-works">How It Works</a>
+              <a href="index.html#final-cta">Early Access</a>
+              <a href="https://myfuturepath.us/web/login">Login</a>
+            </div>
+            <div>
+              <h3>Stay Connected</h3>
+              <form class="newsletter-form">
+                <label class="visually-hidden" for="newsletterEmail">Email address</label>
+                <input id="newsletterEmail" type="email" placeholder="Email address">
+                <button type="submit" aria-label="Subscribe"><i class="bi bi-arrow-right"></i></button>
+              </form>
+              <div class="social-links">
+                <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; 2026 Future Path. All rights reserved.</span>
+          <div>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Contact</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

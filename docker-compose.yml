@@ -1,0 +1,7 @@
+services:
+  future-path:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: future-path
+    restart: unless-stopped
