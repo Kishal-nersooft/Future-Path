@@ -25,6 +25,299 @@
     });
   }
 
+  const navActions = document.querySelector(".nav-actions");
+  const authStorageKey = "futurePathAuthState";
+  const authRoleStorageKey = "futurePathUserRole";
+  const validAuthRoles = ["student", "parent"];
+  const authRoleLabels = {
+    student: "Student",
+    parent: "Parent"
+  };
+
+  const getStoredUserRole = () => {
+    try {
+      const storedRole = localStorage.getItem(authRoleStorageKey);
+      if (validAuthRoles.includes(storedRole)) return storedRole;
+
+      return localStorage.getItem(authStorageKey) === "logged-in" ? "student" : null;
+    } catch {
+      return null;
+    }
+  };
+
+  const setStoredUserRole = (role) => {
+    try {
+      if (validAuthRoles.includes(role)) {
+        localStorage.setItem(authStorageKey, "logged-in");
+        localStorage.setItem(authRoleStorageKey, role);
+      } else {
+        localStorage.removeItem(authStorageKey);
+        localStorage.removeItem(authRoleStorageKey);
+      }
+    } catch {
+      // If storage is unavailable, the demo state still updates for this page view.
+    }
+  };
+
+  const closeProfileMenu = () => {
+    const profileMenu = navActions?.querySelector(".profile-menu");
+    const profileTrigger = navActions?.querySelector(".profile-trigger");
+    profileMenu?.classList.remove("open");
+    profileTrigger?.setAttribute("aria-expanded", "false");
+  };
+
+  const renderAuthenticatedNav = (role = "student") => {
+    if (!navActions) return;
+
+    const roleLabel = authRoleLabels[role] || authRoleLabels.student;
+
+    navActions.innerHTML = `
+      <div class="profile-menu">
+        <button class="profile-trigger" type="button" aria-expanded="false" aria-controls="profileMenuDropdown">
+          <span class="profile-avatar" aria-hidden="true"><i class="bi bi-person-fill"></i></span>
+          <span class="profile-name">${roleLabel}</span>
+          <i class="bi bi-chevron-down profile-chevron" aria-hidden="true"></i>
+        </button>
+        <div class="profile-dropdown" id="profileMenuDropdown">
+          <a class="profile-menu-button" href="profile.html">
+            <i class="bi bi-person-circle" aria-hidden="true"></i>
+            My Profile
+          </a>
+          <button class="profile-menu-button logout-button" type="button">
+            <i class="bi bi-box-arrow-right" aria-hidden="true"></i>
+            Logout
+          </button>
+        </div>
+      </div>
+    `;
+
+    const profileMenu = navActions.querySelector(".profile-menu");
+    const profileTrigger = navActions.querySelector(".profile-trigger");
+    const logoutButton = navActions.querySelector(".logout-button");
+
+    profileTrigger?.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const isOpen = profileMenu?.classList.toggle("open") || false;
+      profileTrigger.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    profileMenu?.addEventListener("click", (event) => {
+      event.stopPropagation();
+    });
+
+    logoutButton?.addEventListener("click", () => {
+      setStoredUserRole(null);
+      renderGuestNav();
+    });
+  };
+
+  const renderGuestNav = () => {
+    if (!navActions) return;
+
+    navActions.innerHTML = `
+      <a class="btn btn-primary-gradient" href="registration.html">Register</a>
+      <a class="btn btn-glass" href="https://myfuturepath.us/web/login">Sign In</a>
+    `;
+  };
+
+  document.querySelectorAll("[data-register-role]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const role = button.dataset.registerRole;
+      if (!validAuthRoles.includes(role)) return;
+
+      setStoredUserRole(role);
+      window.location.href = "profile.html";
+    });
+  });
+
+  const agentRegistrationForm = document.querySelector("[data-agent-registration-form]");
+  if (agentRegistrationForm) {
+    const formStatus = document.querySelector("[data-agent-registration-status]");
+
+    agentRegistrationForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if (formStatus) {
+        formStatus.hidden = false;
+      }
+    });
+  }
+
+  if (navActions) {
+    const currentRole = getStoredUserRole();
+    if (currentRole) {
+      renderAuthenticatedNav(currentRole);
+    } else {
+      renderGuestNav();
+    }
+
+    document.addEventListener("click", closeProfileMenu);
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeProfileMenu();
+    });
+  }
+
+  const profilePage = document.querySelector("[data-profile-page]");
+  if (profilePage) {
+    const role = getStoredUserRole() || "student";
+    const roleLabel = authRoleLabels[role] || authRoleLabels.student;
+    profilePage.dataset.profileRole = role;
+    const sidebarNav = profilePage.querySelector("#profileSidebarNav");
+    const roleTitle = profilePage.querySelector("#profileRoleTitle");
+    const roleEyebrow = profilePage.querySelector("#profileRoleEyebrow");
+    const roleSummary = profilePage.querySelector("#profileRoleSummary");
+    const profileBadge = profilePage.querySelector("#profileRoleBadge");
+    const contentPanel = profilePage.querySelector("#profileContentPanel");
+
+    const basicInformationContent = `
+      <div class="profile-section-heading">
+        <span>Basic Information</span>
+        <h2>Basic Information</h2>
+        <p>Keep your personal details accurate so Future Path can personalize the profile experience.</p>
+      </div>
+      <form class="profile-form">
+        <div class="profile-form-grid">
+          <label>
+            <span>Legal Name</span>
+            <input type="text" value="kish">
+          </label>
+          <label>
+            <span>&nbsp;</span>
+            <input type="text" value="kish" aria-label="Legal last name">
+          </label>
+          <label>
+            <span>Country</span>
+            <select>
+              <option selected>Select Country</option>
+              <option>Sri Lanka</option>
+              <option>United States</option>
+              <option>Albania</option>
+            </select>
+          </label>
+          <label>
+            <span>Nationality</span>
+            <select>
+              <option selected>Albania</option>
+              <option>Sri Lanka</option>
+              <option>United States</option>
+            </select>
+          </label>
+          <label>
+            <span>State/Region</span>
+            <input type="text">
+          </label>
+          <label>
+            <span>City</span>
+            <input type="text">
+          </label>
+          <label>
+            <span>Date of Birth</span>
+            <input type="date" aria-label="Date of Birth">
+          </label>
+          <label>
+            <span>Age (DOB)</span>
+            <input type="text">
+          </label>
+          <label>
+            <span>Graduation year</span>
+            <input type="number" value="2027">
+          </label>
+          <label>
+            <span>Email</span>
+            <input type="email" value="kishal+4@nerosoftsolutions.com">
+          </label>
+          <label>
+            <span>Phone number</span>
+            <input type="tel" value="245">
+          </label>
+          <label class="profile-photo-field">
+            <span>Profile Photo</span>
+            <input type="file" accept="image/*">
+          </label>
+        </div>
+        <div class="profile-form-actions">
+          <button class="btn btn-primary-gradient" type="button">Save Basic Information</button>
+        </div>
+      </form>
+    `;
+
+    const createPlaceholderContent = (label) => `
+      <div class="profile-section-heading">
+        <span>${label}</span>
+        <h2>${label}</h2>
+        <p>This section is ready for the ${label.toLowerCase()} details and form fields.</p>
+      </div>
+      <div class="profile-empty-state">
+        <i class="bi bi-layout-text-sidebar-reverse" aria-hidden="true"></i>
+        <h3>${label} content</h3>
+        <p>Select another menu item on the left to switch the profile content shown here.</p>
+      </div>
+    `;
+
+    const profileMenuItems = {
+      parent: [
+        ["basic-information", "bi-person-vcard", "Basic Information", basicInformationContent],
+        ["billing-information", "bi-credit-card", "Billing Information", createPlaceholderContent("Billing Information")],
+        ["members", "bi-people", "Members", createPlaceholderContent("Members")]
+      ],
+      student: [
+        ["basic-information", "bi-person-vcard", "Basic Information", basicInformationContent],
+        ["personal-statement", "bi-chat-quote", "Personal Statement", createPlaceholderContent("Personal Statement")],
+        ["academic-information", "bi-mortarboard", "Academic Information", createPlaceholderContent("Academic Information")],
+        ["outside-achievements", "bi-trophy", "Outside of school achievements", createPlaceholderContent("Outside of school achievements")],
+        ["community-service", "bi-heart", "Community Service, Leadership, and Extracurricular Involvement", createPlaceholderContent("Community Service, Leadership, and Extracurricular Involvement")],
+        ["language-proficiency", "bi-translate", "Language Proficiency", createPlaceholderContent("Language Proficiency")],
+        ["athletics", "bi-dribbble", "Athletics", createPlaceholderContent("Athletics")],
+        ["art", "bi-palette", "Art", createPlaceholderContent("Art")],
+        ["multimedia-portfolio", "bi-collection-play", "Multimedia Portfolio", createPlaceholderContent("Multimedia Portfolio")],
+        ["goals-preferences", "bi-bullseye", "Goals / Preferences", createPlaceholderContent("Goals / Preferences")],
+        ["admission-guidebook", "bi-journal-bookmark", "Admission success guidebook (knowledgebase)", createPlaceholderContent("Admission success guidebook (knowledgebase)")]
+      ]
+    };
+    const activeMenuItems = profileMenuItems[role] || profileMenuItems.student;
+
+    const renderProfileSection = (sectionId) => {
+      const activeItem = activeMenuItems.find(([id]) => id === sectionId) || activeMenuItems[0];
+      if (contentPanel) contentPanel.innerHTML = activeItem[3];
+
+      sidebarNav?.querySelectorAll(".profile-sidebar-link").forEach((button) => {
+        const isActive = button.dataset.profileSection === activeItem[0];
+        button.classList.toggle("active", isActive);
+        if (isActive) {
+          button.setAttribute("aria-current", "page");
+        } else {
+          button.removeAttribute("aria-current");
+        }
+      });
+    };
+
+    document.title = `${roleLabel} Profile | Future Path`;
+    if (roleTitle) roleTitle.textContent = `${roleLabel} Profile`;
+    if (roleEyebrow) roleEyebrow.textContent = `${roleLabel} workspace`;
+    if (profileBadge) profileBadge.textContent = roleLabel;
+    if (roleSummary) {
+      roleSummary.textContent =
+        role === "parent"
+          ? "Manage parent account details, billing, and linked family members from one place."
+          : "Organize your student story, achievements, goals, and readiness profile for colleges.";
+    }
+
+    if (sidebarNav) {
+      sidebarNav.replaceChildren();
+      activeMenuItems.forEach(([id, icon, label]) => {
+        const item = document.createElement("button");
+        item.type = "button";
+        item.className = "profile-sidebar-link";
+        item.dataset.profileSection = id;
+        item.innerHTML = `<i class="bi ${icon}" aria-hidden="true"></i><span>${label}</span>`;
+        item.addEventListener("click", () => renderProfileSection(id));
+        sidebarNav.append(item);
+      });
+    }
+
+    renderProfileSection("basic-information");
+  }
+
   if (window.AOS) {
     document.body.classList.add("aos-enabled");
     window.AOS.init({

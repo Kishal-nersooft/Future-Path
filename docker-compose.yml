@@ -1,7 +1,6 @@
 services:
-  future-path:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: future-path
+  web:
+    build: .
     restart: unless-stopped
+    ports:
+      - "5020:5020"

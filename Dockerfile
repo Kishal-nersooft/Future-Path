@@ -1,10 +1,9 @@
-FROM python:3.13-alpine
+FROM python:3.12-alpine
 
 WORKDIR /app
 
-COPY index.html article.html resources.html universities.html style.css script.js ./
+COPY index.html style.css script.js /app/
 
-RUN adduser -D -H appuser
-USER appuser
+EXPOSE 5010
 
-CMD ["python", "-m", "http.server", "8000", "--bind", "0.0.0.0"]
+CMD ["python", "-m", "http.server", "5020", "--bind", "0.0.0.0"]
